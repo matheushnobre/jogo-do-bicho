@@ -19,10 +19,8 @@ Atualmente a aplicação está em fase de implementação e evolução contínua
 ## 🛠️ Tecnologias Utilizadas
 
 ### 🎨 Front-end
-- HTML  
-- CSS  
-- JavaScript  
 - Angular  
+- Bootstrap
 
 ### ⚙️ Back-end
 - Java  
@@ -30,6 +28,21 @@ Atualmente a aplicação está em fase de implementação e evolução contínua
 
 ### 🗄️ Banco de Dados
 - MySQL  
+
+---
+
+## 📌 Arquitetura
+
+A aplicação segue o padrão de **arquitetura em camadas**, separando responsabilidades em:
+
+- Controller  
+- Service  
+- Repository  
+- Model  
+
+Isso garante maior organização, escalabilidade e facilidade de manutenção.
+
+![Diagrama da arquitetura](assets/diagrama.png)
 
 ---
 
@@ -53,19 +66,6 @@ A API REST está sendo desenvolvida com os seguintes endpoints:
 ### 🎲 Apostas
 - `POST /bets` → Criar nova aposta  
 - `GET /bets/{id}/result` → Dados do resultado da aposta  
-
----
-
-## 📌 Arquitetura
-
-A aplicação segue o padrão de **arquitetura em camadas**, separando responsabilidades em:
-
-- Controller  
-- Service  
-- Repository  
-- Model  
-
-Isso garante maior organização, escalabilidade e facilidade de manutenção.
 
 ---
 
