@@ -2,11 +2,7 @@ name: Backend CI
 
 on:
   push:
-    paths:
-      - 'bichofull-backend/**'
   pull_request:
-    paths:
-      - 'bichofull-backend/**'
 
 jobs:
   build:
@@ -14,7 +10,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: bichofull-backend
+        working-directory: bichofull-backend/bichofull
 
     steps:
       - name: Checkout repository
