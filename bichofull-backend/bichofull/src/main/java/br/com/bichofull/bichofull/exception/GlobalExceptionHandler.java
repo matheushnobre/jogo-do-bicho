@@ -1,5 +1,6 @@
 package br.com.bichofull.bichofull.exception;
 
+import br.com.bichofull.bichofull.exception.custom.EmailAlreadyRegisteredException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -30,5 +31,11 @@ public class GlobalExceptionHandler {
 
         ApiError apiError = new ApiError(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Validation Error", fieldErrors);
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(apiError);
+    }
+
+    @ExceptionHandler(EmailAlreadyRegisteredException.class)
+    public ResponseEntity<ApiError> handleEmailAlreadyRegistered(EmailAlreadyRegisteredException exception){
+        ApiError apiError = new ApiError(HttpStatus.CONFLICT.value(), exception.getMessage(), List.of());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(apiError);
     }
 }
