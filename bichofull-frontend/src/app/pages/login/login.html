@@ -1,0 +1,68 @@
+<section class="container">
+  <div class="card">
+
+    <h2>Olá, bem-vindo ao Bicho-Full!</h2>
+    <h3>Quando o bicho chama, a sorte responde</h3>
+
+    <form class="form">
+
+      <!-- EMAIL -->
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input
+          type="email"
+          matInput
+          [formControl]="emailFormControl"
+          placeholder="Ex. seuemail@gmail.com">
+
+        @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+          <mat-error>Por favor, insira um endereço de e-mail válido</mat-error>
+        }
+
+        @if (emailFormControl.hasError('required')) {
+          <mat-error>Email é obrigatório</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- SENHA -->
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input
+          type="password"
+          matInput
+          [formControl]="passwordFormControl"
+          placeholder="Ex. 12345678">
+
+        @if (passwordFormControl.hasError('required')) {
+          <mat-error>Senha é obrigatória</mat-error>
+        }
+
+        @if (passwordFormControl.hasError('minlength')) {
+          <mat-error>Mínimo de 6 caracteres</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- BOTÃO -->
+      <button
+        mat-raised-button
+        class="login-button"
+        [disabled]="emailFormControl.invalid || passwordFormControl.invalid">
+
+        Entrar
+      </button>
+
+      <!-- LINKS EXTRAS -->
+      <div class="extra-options">
+
+        <span>
+          Não tem conta?
+          <a routerLink="/register" class="register">
+            Cadastre-se
+          </a>
+        </span>
+      </div>
+
+    </form>
+
+  </div>
+</section>
