@@ -20,7 +20,7 @@ Atualmente a aplicação está em fase de implementação e evolução contínua
 
 ### 🎨 Front-end
 - Angular  
-- Bootstrap
+- Angular Material
 
 ### ⚙️ Back-end
 - Java  
@@ -51,8 +51,8 @@ Isso garante maior organização, escalabilidade e facilidade de manutenção.
 A API REST está sendo desenvolvida com os seguintes endpoints:
 
 ### 🔑 Autenticação
-- `POST /auth/signup` → Cadastro de usuário  
-- `POST /auth/signin` → Login de usuário  
+- `POST /auth/register` → Cadastro de usuário  
+- `POST /auth/login` → Login de usuário  
 
 ### 👤 Usuário
 - `GET /users/me` → Dados do usuário autenticado  
