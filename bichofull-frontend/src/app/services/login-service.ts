@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { User } from '../models/user';
 import { LoginRequest } from '../models/auth/login-request';
 import { AuthResponse } from '../models/auth/auth-response';
 
@@ -19,7 +18,6 @@ export class LoginService {
   }
 
   login(user: LoginRequest): Observable<AuthResponse>{
-    console.log('service executado')
     return this.http.post<AuthResponse>(this.API + "/login", user);
   }
   

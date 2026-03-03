@@ -24,8 +24,8 @@ import { LoginRequest } from '../../../models/auth/login-request';
 })
 
 export class LoginComponent {
-    private loginService = inject(LoginService)
-    private router = inject(Router)
+    private loginService = inject(LoginService);
+    private router = inject(Router);
     private cdr = inject(ChangeDetectorRef);
     
     loginForm = new FormGroup({
