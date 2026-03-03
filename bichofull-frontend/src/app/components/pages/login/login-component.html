@@ -4,7 +4,7 @@
     <h2>Olá, bem-vindo ao Bicho-Full!</h2>
     <h3>Quando o bicho chama, a sorte responde</h3>
 
-    <form class="form">
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
 
       <!-- EMAIL -->
       <mat-form-field appearance="outline">
@@ -12,14 +12,13 @@
         <input
           type="email"
           matInput
-          [formControl]="emailFormControl"
-          placeholder="Ex. seuemail@gmail.com">
+          formControlName="email">
 
-        @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+        @if (loginForm.get('email')?.hasError('email') && !loginForm.get('email')?.hasError('required')) {
           <mat-error>Por favor, insira um endereço de e-mail válido</mat-error>
         }
 
-        @if (emailFormControl.hasError('required')) {
+        @if (loginForm.get('email')?.hasError('required')) {
           <mat-error>Email é obrigatório</mat-error>
         }
       </mat-form-field>
@@ -30,30 +29,30 @@
         <input
           type="password"
           matInput
-          [formControl]="passwordFormControl"
-          placeholder="Ex. 12345678">
+          formControlName="password">
 
-        @if (passwordFormControl.hasError('required')) {
+        @if (loginForm.get('password')?.hasError('required')) {
           <mat-error>Senha é obrigatória</mat-error>
-        }
-
-        @if (passwordFormControl.hasError('minlength')) {
-          <mat-error>Mínimo de 6 caracteres</mat-error>
         }
       </mat-form-field>
 
       <!-- BOTÃO -->
       <button
+        type="submit"
         mat-raised-button
         class="login-button"
-        [disabled]="emailFormControl.invalid || passwordFormControl.invalid">
-
+        [disabled]="loginForm.invalid">
         Entrar
       </button>
 
-      <!-- LINKS EXTRAS -->
-      <div class="extra-options">
+      @if (loginError) {
+        <span class="error-login fade-in">
+          E-mail e/ou senha incorretos
+        </span>
+      }
+      
 
+      <div class="extra-options">
         <span>
           Não tem conta?
           <a routerLink="/register" class="register">
@@ -66,3 +65,4 @@
 
   </div>
 </section>
+

@@ -14,3 +14,9 @@ api:
   security:
     token:
       secret: ${JWT_SECRET:my-secret-key}
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG

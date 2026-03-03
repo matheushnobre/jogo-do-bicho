@@ -81,3 +81,25 @@ mat-form-field {
     font-weight: 600;
   }
 }
+
+// Login error
+.error-login {
+  text-decoration: none;
+  color: rgb(140, 26, 26);
+  font-weight: 500;
+}
+
+.fade-in {
+  animation: fadeIn 180ms ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
