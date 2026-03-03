@@ -1,0 +1,68 @@
+<section class="container">
+  <div class="card">
+
+    <h2>Olá, bem-vindo ao Bicho-Full!</h2>
+    <h3>Quando o bicho chama, a sorte responde</h3>
+
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+
+      <!-- EMAIL -->
+      <mat-form-field appearance="outline">
+        <mat-label>E-mail</mat-label>
+        <input
+          type="email"
+          matInput
+          formControlName="email">
+
+        @if (loginForm.get('email')?.hasError('email') && !loginForm.get('email')?.hasError('required')) {
+          <mat-error>Por favor, insira um endereço de e-mail válido</mat-error>
+        }
+
+        @if (loginForm.get('email')?.hasError('required')) {
+          <mat-error>Email é obrigatório</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- SENHA -->
+      <mat-form-field appearance="outline">
+        <mat-label>Senha</mat-label>
+        <input
+          type="password"
+          matInput
+          formControlName="password">
+
+        @if (loginForm.get('password')?.hasError('required')) {
+          <mat-error>Senha é obrigatória</mat-error>
+        }
+      </mat-form-field>
+
+      <!-- BOTÃO -->
+      <button
+        type="submit"
+        mat-raised-button
+        class="login-button"
+        [disabled]="loginForm.invalid">
+        Entrar
+      </button>
+
+      @if (loginError) {
+        <span class="error-login fade-in">
+          E-mail e/ou senha incorretos
+        </span>
+      }
+      
+
+      <div class="extra-options">
+        <span>
+          Não tem conta?
+          <a routerLink="/register" class="register">
+            Cadastre-se
+          </a>
+        </span>
+      </div>
+
+    </form>
+
+  </div>
+</section>
+

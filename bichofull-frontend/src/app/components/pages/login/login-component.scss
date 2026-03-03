@@ -1,0 +1,105 @@
+/* Background */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1f1f2e, #2c2c54);
+  padding: 20px;
+}
+
+/* Central card */
+.card {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  text-align: center;
+
+  h2 {
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  h3 {
+    margin-bottom: 28px;
+    font-weight: 400;
+    color: #666;
+    font-size: 15px;
+  }
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+/* Button */
+.login-button {
+  height: 48px;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: #3f51b5 !important;
+  color: white !important;
+
+   &:disabled {
+    background: #bdbdbd !important;
+    color: #eeeeee !important;
+    cursor: not-allowed;
+    opacity: 1; 
+  }
+}
+
+/* Extra links */
+.extra-options {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+
+  a {
+    text-decoration: none;
+    color: #3f51b5;
+    font-weight: 500;
+    transition: 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .register {
+    font-weight: 600;
+  }
+}
+
+// Login error
+.error-login {
+  text-decoration: none;
+  color: #BF2929;
+  font-weight: 500;
+}
+
+.fade-in {
+  animation: fadeIn 180ms ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
