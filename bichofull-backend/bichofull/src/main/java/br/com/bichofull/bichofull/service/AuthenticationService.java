@@ -7,6 +7,7 @@ import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.exception.custom.EmailAlreadyRegisteredException;
 import br.com.bichofull.bichofull.infra.security.TokenService;
 import br.com.bichofull.bichofull.repository.UserRepository;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,10 +25,12 @@ public class AuthenticationService {
     @Autowired
     private TokenService tokenService;
 
-    public LoginResponseDTO login(AuthenticationDTO data){
+    public LoginResponseDTO login(AuthenticationDTO data, HttpServletResponse response){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
         var token = tokenService.generateToken((User) auth.getPrincipal());
+
+        CookieService.setCookie(response, "token", token, 86400);
         return new LoginResponseDTO(token);
     }
 

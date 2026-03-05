@@ -18,7 +18,7 @@ export class LoginService {
   }
 
   login(user: LoginRequest): Observable<AuthResponse>{
-    return this.http.post<AuthResponse>(this.API + "/login", user);
+    return this.http.post<AuthResponse>(this.API + "/login", user, {withCredentials: true});
   }
   
 }
