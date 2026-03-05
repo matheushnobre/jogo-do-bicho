@@ -6,6 +6,9 @@ import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.exception.custom.EmailAlreadyRegisteredException;
 import br.com.bichofull.bichofull.infra.security.TokenService;
 import br.com.bichofull.bichofull.repository.UserRepository;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,6 +52,8 @@ class AuthenticationServiceTest {
         var user = new User("Test", "test@gmail.com", "12345678");
         user.setId(1L);
         var authentication = mock(Authentication.class);
+        var httpResponse = mock(HttpServletResponse.class);
+
 
         when(authenticationManager.authenticate(any()))
                 .thenReturn(authentication);
@@ -56,21 +61,23 @@ class AuthenticationServiceTest {
         when(tokenService.generateToken(user))
                 .thenReturn("fake-jwt-token");
 
-        var response = authenticationService.login(dto);
+        var response = authenticationService.login(dto, httpResponse);
         assertNotNull(response);
         assertEquals("fake-jwt-token", response.token());
+        verify(httpResponse).addCookie(any(Cookie.class));
     }
 
     @Test
     @DisplayName("Should throw BadCredentialsException when credentials are invalid")
     void loginInvalidCredentials() {
         var dto = new AuthenticationDTO("wrong@gmail.com", "12345678");
+        var httpResponse = mock(HttpServletResponse.class);
 
         when(authenticationManager.authenticate(any()))
                 .thenThrow(new BadCredentialsException("Invalid credentials"));
 
         assertThrows(BadCredentialsException.class,
-                () -> authenticationService.login(dto));
+                () -> authenticationService.login(dto, httpResponse));
 
         verify(tokenService, never()).generateToken(any());
     }

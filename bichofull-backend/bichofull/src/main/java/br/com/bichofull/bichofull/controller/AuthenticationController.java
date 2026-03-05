@@ -5,6 +5,7 @@ import br.com.bichofull.bichofull.domain.user.LoginResponseDTO;
 import br.com.bichofull.bichofull.domain.user.RegisterDTO;
 import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.service.AuthenticationService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,8 @@ public class AuthenticationController {
     private AuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthenticationDTO data){
-        return ResponseEntity.ok(authenticationService.login(data));
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthenticationDTO data, HttpServletResponse response){
+        return ResponseEntity.ok(authenticationService.login(data, response));
     }
 
     @PostMapping("/register")

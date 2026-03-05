@@ -1,6 +1,7 @@
 package br.com.bichofull.bichofull.infra.security;
 
 import br.com.bichofull.bichofull.repository.UserRepository;
+import br.com.bichofull.bichofull.service.CookieService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,13 +26,19 @@ public class SecurityFilter extends OncePerRequestFilter {
     
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        var token = this.recoveryToken(request);
-        if(token != null){
-            var email = tokenService.validateToken(token);
-            UserDetails user = userRepository.findByEmail(email);
+        var token = CookieService.getCookie(request, "token");
 
-            var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        if(token != null && SecurityContextHolder.getContext().getAuthentication() == null){
+            var email = tokenService.validateToken(token);
+
+            if(email != null) {
+                UserDetails user = userRepository.findByEmail(email);
+
+                if (user != null) {
+                    var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
+            }
         }
         filterChain.doFilter(request, response);
     }
