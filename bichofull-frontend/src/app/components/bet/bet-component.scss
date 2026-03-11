@@ -1,0 +1,92 @@
+.bet-card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid rgb(198, 194, 194);
+    border-radius: 24px;
+    padding: 20px;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-sizing: border-box; 
+}
+
+h2 { 
+    font-weight: 700; 
+    margin-bottom: 25px; 
+    color: #3f51b5;
+    font-family: fantasy;
+    font-weight: 200;
+}
+
+.tab-container {
+  background: #f3f1eb;
+  padding: 5px;
+  border-radius: 15px;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.tab-container button {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.tab-container button.active {
+  background: #cccee5;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.multiplier { color: #888; font-size: 0.85rem; font-weight: 400; }
+
+.description { color: #666; font-size: 0.9rem; margin: 20px 0; }
+
+.input-group { margin-bottom: 15px; }
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #f3f1eb;
+  border-radius: 12px;
+  background: white;
+  box-sizing: border-box;
+}
+
+.amount-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.amount-shortcuts button {
+  padding: 10px 5px;
+  border: 1.2px solid #f3f1eb;
+  background: #f3f1eb;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.confirm-btn {
+  width: 100%;
+  background: #3f51b5; 
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
