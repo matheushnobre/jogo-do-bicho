@@ -1,0 +1,73 @@
+<div class="bet-card">
+  <h2>Fazer Aposta</h2>
+
+  <div class="tab-container">
+    <button [class.active]="selectedType === 'group'" (click)="setType('group')">
+      Bicho <span class="multiplier">(18x)</span>
+    </button>
+    <button [class.active]="selectedType === 'dezena'" (click)="setType('dezena')">
+      Dezena <span class="multiplier">(60x)</span>
+    </button>
+    <button [class.active]="selectedType === 'thousands'" (click)="setType('thousands')">
+      Milhar <span class="multiplier">(4000x)</span>
+    </button>
+  </div>
+
+  @if (selectedType == "group"){
+    <p class="description">
+        Escolha o número do seu bicho (1-25). Paga <strong>18x</strong> se acertar.
+    </p>
+  }
+
+  @if (selectedType == "dezena"){
+    <p class="description">
+        Escolha uma dezena (0-99). Paga <strong>60x</strong> se acertar.
+    </p>
+  }
+
+  @if (selectedType == "thousands"){
+    <p class="description">
+        Escolha um milhar (0-9999). Paga <strong>4000x</strong> se acertar.
+    </p>
+  }
+  
+
+  <div class="input-group">
+    <label>Número</label>
+    <input 
+      type="number" 
+      placeholder="Digite o número que deseja apostar" 
+      [(ngModel)]="betNumber" 
+      (ngModelChange)="validateInput()"
+      [class.input-error]="numberErrorMessage"
+    >
+    
+    @if (numberErrorMessage) {
+      <span class="error-text">{{ numberErrorMessage }}</span>
+    }
+  </div>
+
+  <div class="input-group">
+    <label>Valor da Aposta (R$)</label>
+    <input type="number" 
+      placeholder="Digite o valor que deseja apostar" 
+      [(ngModel)]="betAmount"
+      (ngModelChange)="validateInput()">
+  
+    @if (amountErrorMessage) {
+      <span class="error-text">{{ amountErrorMessage }}</span>
+    }
+  </div>
+
+  <div class="amount-shortcuts">
+    <button (click)="setAmount(5)">R$ 5</button>
+    <button (click)="setAmount(10)">R$ 10</button>
+    <button (click)="setAmount(20)">R$ 20</button>
+  </div>
+
+  <button class="confirm-btn" 
+    (click)="confirmBet()"
+    [disabled]="numberErrorMessage || !betNumber || !betAmount || betAmount <= 0">
+    Confirmar Aposta
+  </button>
+</div>

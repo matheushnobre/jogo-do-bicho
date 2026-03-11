@@ -1,0 +1,12 @@
+<div class="animal-list-wrapper">
+  <h2 class="animal-list-title">Escolha um Animal</h2>
+  <h3 class="animal-list-subject">Clique em um animal para apostar no bicho.</h3>
+  
+  <ul class="animal-grid">
+    @for (animal of (animals$ | async); track animal.id) {
+      <li>
+          <app-animal [animal]="animal"></app-animal>
+      </li>
+    }
+  </ul>
+</div>

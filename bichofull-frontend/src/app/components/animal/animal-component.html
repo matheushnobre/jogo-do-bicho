@@ -1,0 +1,13 @@
+<div class="animal-card">
+
+  <div class="animal-id">
+    {{ animal.id | number:'2.0' }}
+  </div>
+
+  <img class="animal-image" [src]="animal.getImage()">
+
+  <h3 class="animal-name">
+    {{ animal.name }}
+  </h3>
+
+</div>
