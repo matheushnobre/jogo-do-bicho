@@ -3,7 +3,7 @@
 
   <div class="tab-container">
     <button [class.active]="selectedType === 'group'" (click)="setType('group')">
-      Grupo <span class="multiplier">(18x)</span>
+      Bicho <span class="multiplier">(18x)</span>
     </button>
     <button [class.active]="selectedType === 'dezena'" (click)="setType('dezena')">
       Dezena <span class="multiplier">(60x)</span>
@@ -21,25 +21,42 @@
 
   @if (selectedType == "dezena"){
     <p class="description">
-        Escolha uma dezena (00-99). Paga <strong>60x</strong> se acertar.
+        Escolha uma dezena (0-99). Paga <strong>60x</strong> se acertar.
     </p>
   }
 
   @if (selectedType == "thousands"){
     <p class="description">
-        Escolha um milhar (0000-9999). Paga <strong>4000x</strong> se acertar.
+        Escolha um milhar (0-9999). Paga <strong>4000x</strong> se acertar.
     </p>
   }
   
 
   <div class="input-group">
     <label>Número</label>
-    <input type="text" placeholder="..." [(ngModel)]="betNumber">
+    <input 
+      type="number" 
+      placeholder="Digite o número que deseja apostar" 
+      [(ngModel)]="betNumber" 
+      (ngModelChange)="validateInput()"
+      [class.input-error]="numberErrorMessage"
+    >
+    
+    @if (numberErrorMessage) {
+      <span class="error-text">{{ numberErrorMessage }}</span>
+    }
   </div>
 
   <div class="input-group">
     <label>Valor da Aposta (R$)</label>
-    <input type="number" placeholder="0,00" [(ngModel)]="betAmount">
+    <input type="number" 
+      placeholder="Digite o valor que deseja apostar" 
+      [(ngModel)]="betAmount"
+      (ngModelChange)="validateInput()">
+  
+    @if (amountErrorMessage) {
+      <span class="error-text">{{ amountErrorMessage }}</span>
+    }
   </div>
 
   <div class="amount-shortcuts">
@@ -48,7 +65,9 @@
     <button (click)="setAmount(20)">R$ 20</button>
   </div>
 
-  <button class="confirm-btn" (click)="confirmBet()">
+  <button class="confirm-btn" 
+    (click)="confirmBet()"
+    [disabled]="numberErrorMessage || !betNumber || !betAmount || betAmount <= 0">
     Confirmar Aposta
   </button>
 </div>

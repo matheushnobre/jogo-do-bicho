@@ -90,3 +90,21 @@ h2 {
   cursor: pointer;
   margin-top: 10px;
 }
+
+.input-error {
+  border: 1.5px solid #ff4d4d !important;
+  background-color: #fff5f5;
+}
+
+.error-text {
+  color: #ff4d4d;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  display: block;
+  font-weight: 500;
+}
+
+.confirm-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
