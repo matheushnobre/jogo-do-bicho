@@ -1,5 +1,7 @@
 package br.com.bichofull.bichofull.domain.user;
 
+import br.com.bichofull.bichofull.domain.bet.Bet;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -32,6 +35,9 @@ public class User implements UserDetails {
 
     @Column()
     private BigDecimal balance;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Bet> bets = new ArrayList<>();
 
     public User(String name, String email, String password){
         this.name = name;

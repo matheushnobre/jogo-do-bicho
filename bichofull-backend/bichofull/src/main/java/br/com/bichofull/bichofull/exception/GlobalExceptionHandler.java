@@ -1,6 +1,8 @@
 package br.com.bichofull.bichofull.exception;
 
+import br.com.bichofull.bichofull.exception.custom.BetNumberInvalidException;
 import br.com.bichofull.bichofull.exception.custom.EmailAlreadyRegisteredException;
+import br.com.bichofull.bichofull.exception.custom.InsufficientBalanceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -37,5 +39,17 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiError> handleEmailAlreadyRegistered(EmailAlreadyRegisteredException exception){
         ApiError apiError = new ApiError(HttpStatus.CONFLICT.value(), exception.getMessage(), List.of());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(apiError);
+    }
+
+    @ExceptionHandler(BetNumberInvalidException.class)
+    public ResponseEntity<ApiError> handleBetNumberInvalid(BetNumberInvalidException exception){
+        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST.value(), exception.getMessage(), List.of());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiError);
+    }
+
+    @ExceptionHandler(InsufficientBalanceException.class)
+    public ResponseEntity<ApiError> handleInsufficientBalanceException(InsufficientBalanceException exception){
+        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST.value(), exception.getMessage(), List.of());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiError);
     }
 }
