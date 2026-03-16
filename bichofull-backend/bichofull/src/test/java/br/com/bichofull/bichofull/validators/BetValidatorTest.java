@@ -38,7 +38,7 @@ class BetValidatorTest {
     @DisplayName("Should throws BetNumberInvalidException when bets in an invalid DEZENA")
     void betsInAnInvalidDezena() {
         User user = new User("Teste", "teste@gmail.com", "password");
-        BetPostDTO data = new BetPostDTO(BetType.DEZENA.getMaxNumber()+1, new BigDecimal("12.00"), BetType.DEZENA);
+        BetPostDTO data = new BetPostDTO(BetType.TENS.getMaxNumber()+1, new BigDecimal("12.00"), BetType.TENS);
 
         assertThrows(BetNumberInvalidException.class, () -> {
             betValidator.validateBet(user, data);
