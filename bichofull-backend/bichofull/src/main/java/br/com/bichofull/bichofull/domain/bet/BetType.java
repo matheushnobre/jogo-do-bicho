@@ -5,9 +5,9 @@ import lombok.Getter;
 import java.math.BigDecimal;
 
 public enum BetType {
-    GROUP("Bicho", 0, 1, 25, new BigDecimal("18.00"), new BigDecimal("3.6")),
+    GROUP("Bicho", 0, 1, 25, new BigDecimal("18.00"), new BigDecimal("3.60")),
     DEZENA("Dezena", 1, 0, 99, new BigDecimal("60.00"), new BigDecimal("12.00")),
-    THOUSANDS("Milhar",2, 0, 9999, new BigDecimal("4000.00"), new BigDecimal("800"));
+    THOUSANDS("Milhar",2, 0, 9999, new BigDecimal("4000.00"), new BigDecimal("800.00"));
 
     @Getter
     private final String name;
