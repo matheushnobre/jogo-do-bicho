@@ -7,6 +7,7 @@ import br.com.bichofull.bichofull.domain.results.Result;
 import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.helpers.GenerateBet;
 import br.com.bichofull.bichofull.helpers.GenerateResults;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,8 +22,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class CheckBetTest {
 
+    private CheckBet checkBet;
 
-
+    @BeforeEach
+    void setup() {
+        // Como o validator agora é um componente instanciável:
+        checkBet = new CheckBet();
+    }
 
     @Test
     @DisplayName("Should return 0")
@@ -30,7 +36,7 @@ class CheckBetTest {
         Bet bet = GenerateBet.generateBet();
         bet.setBetNumber(25);
 
-        BigDecimal payout = CheckBet.check(bet);
+        BigDecimal payout = checkBet.check(bet);
         assertEquals(BigDecimal.ZERO, payout);
     }
 
@@ -43,7 +49,7 @@ class CheckBetTest {
         bet.setBetAmount(new BigDecimal("5.00"));
 
         BigDecimal expected = bet.getBetAmount().multiply(bet.getBetType().getWinMainDraw());
-        BigDecimal payout = CheckBet.check(bet);
+        BigDecimal payout = checkBet.check(bet);
 
         assertEquals(expected, payout);
     }
@@ -57,7 +63,7 @@ class CheckBetTest {
         bet.setBetAmount(new BigDecimal("5.00"));
 
         BigDecimal expected = bet.getBetAmount().multiply(bet.getBetType().getWinSecondDraw());
-        BigDecimal payout = CheckBet.check(bet);
+        BigDecimal payout = checkBet.check(bet);
 
         assertEquals(expected, payout);
     }

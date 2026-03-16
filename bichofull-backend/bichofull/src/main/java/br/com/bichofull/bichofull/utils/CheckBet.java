@@ -2,12 +2,14 @@ package br.com.bichofull.bichofull.utils;
 
 import br.com.bichofull.bichofull.domain.bet.Bet;
 import br.com.bichofull.bichofull.domain.results.Result;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+@Component
 public class CheckBet {
 
-    public static BigDecimal check(Bet bet){
+    public BigDecimal check(Bet bet){
         Result result = bet.getResult();
 
         // Checks if wins in main draw

@@ -6,6 +6,7 @@ import br.com.bichofull.bichofull.domain.bet.BetType;
 import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.exception.custom.BetNumberInvalidException;
 import br.com.bichofull.bichofull.exception.custom.InsufficientBalanceException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BetValidatorTest {
 
+    private BetValidator betValidator;
+
+    @BeforeEach
+    void setup() {
+        betValidator = new BetValidator();
+    }
+
     @Test
     @DisplayName("Should throws BetNumberInvalidException when bets in an invalid GROUP")
     void betsInAnInvalidGroup() {
@@ -22,7 +30,7 @@ class BetValidatorTest {
         BetPostDTO data = new BetPostDTO(BetType.GROUP.getMaxNumber()+1, new BigDecimal("12.00"), BetType.GROUP);
 
         assertThrows(BetNumberInvalidException.class, () -> {
-            BetValidator.validateBet(user, data);
+            betValidator.validateBet(user, data);
         });
     }
 
@@ -33,7 +41,7 @@ class BetValidatorTest {
         BetPostDTO data = new BetPostDTO(BetType.DEZENA.getMaxNumber()+1, new BigDecimal("12.00"), BetType.DEZENA);
 
         assertThrows(BetNumberInvalidException.class, () -> {
-            BetValidator.validateBet(user, data);
+            betValidator.validateBet(user, data);
         });
     }
 
@@ -44,7 +52,7 @@ class BetValidatorTest {
         BetPostDTO data = new BetPostDTO(BetType.THOUSANDS.getMaxNumber()+1, new BigDecimal("12.00"), BetType.THOUSANDS);
 
         assertThrows(BetNumberInvalidException.class, () -> {
-            BetValidator.validateBet(user, data);
+            betValidator.validateBet(user, data);
         });
     }
 
@@ -54,7 +62,7 @@ class BetValidatorTest {
         User user = new User("Teste", "teste@gmail.com", "password");
         BetPostDTO data = new BetPostDTO(BetType.GROUP.getMaxNumber(), new BigDecimal("12.00"), BetType.GROUP);
 
-        assertTrue(BetValidator.validateBet(user, data));
+        assertTrue(betValidator.validateBet(user, data));
     }
 
     @Test
@@ -65,7 +73,7 @@ class BetValidatorTest {
         BetPostDTO data = new BetPostDTO(BetType.GROUP.getMaxNumber(), new BigDecimal("1000.01"), BetType.GROUP);
 
         assertThrows(InsufficientBalanceException.class, () -> {
-            BetValidator.validateBet(user, data);
+            betValidator.validateBet(user, data);
         });
     }
 
@@ -76,7 +84,7 @@ class BetValidatorTest {
         user.setBalance(new BigDecimal("1000.00"));
         BetPostDTO data = new BetPostDTO(BetType.GROUP.getMaxNumber(), new BigDecimal("12.00"), BetType.GROUP);
 
-        assertTrue(BetValidator.validateBet(user, data));
+        assertTrue(betValidator.validateBet(user, data));
     }
 
     @Test
@@ -86,6 +94,6 @@ class BetValidatorTest {
         user.setBalance(new BigDecimal("1000.00"));
         BetPostDTO data = new BetPostDTO(BetType.GROUP.getMaxNumber(), new BigDecimal("1000.00"), BetType.GROUP);
 
-        assertTrue(BetValidator.validateBet(user, data));
+        assertTrue(betValidator.validateBet(user, data));
     }
 }
