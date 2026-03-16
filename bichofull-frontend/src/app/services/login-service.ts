@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoginRequest } from '../models/auth/login-request';
-import { AuthResponse } from '../models/auth/auth-response';
+import { LoginRequest } from '../dto/auth/login-request';
+import { AuthResponse } from '../dto/auth/auth-response';
 
 @Injectable({
   providedIn: 'root',

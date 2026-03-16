@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
-import { RegisterRequest } from '../models/auth/register-request';
+import { RegisterRequest } from '../dto/auth/register-request';
 
 @Injectable({
   providedIn: 'root',

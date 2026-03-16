@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterModule } from '@angular/router';
-import { RegisterRequest } from '../../../models/auth/register-request';
+import { RegisterRequest } from '../../../dto/auth/register-request';
 import { RegisterService } from '../../../services/register-service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 

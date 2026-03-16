@@ -17,6 +17,4 @@ export class AnimalListComponent {
   private animalService = inject(AnimalService)
   
   animals$: Observable<Animal[]> = this.animalService.findAll();
-
-  
 }
