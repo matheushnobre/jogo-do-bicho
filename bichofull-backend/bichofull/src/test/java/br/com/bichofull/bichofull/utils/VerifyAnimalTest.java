@@ -47,7 +47,7 @@ class VerifyAnimalTest {
         Animal expectedAnimal = new Animal(1, "Avestruz");
         when(animalRepository.findById(1)).thenReturn(Optional.of(expectedAnimal));
 
-        Animal result = verifyAnimal.verifyAnimal(1, BetType.DEZENA);
+        Animal result = verifyAnimal.verifyAnimal(1, BetType.TENS);
 
         assertNotNull(result);
         assertEquals(1, result.getId());
@@ -62,7 +62,7 @@ class VerifyAnimalTest {
         Animal expectedAnimal = new Animal(1, "Avestruz");
         when(animalRepository.findById(1)).thenReturn(Optional.of(expectedAnimal));
 
-        Animal result = verifyAnimal.verifyAnimal(4, BetType.DEZENA);
+        Animal result = verifyAnimal.verifyAnimal(4, BetType.TENS);
 
         assertNotNull(result);
         assertEquals(1, result.getId());

@@ -1,6 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { BetService } from '../../services/bets/bet-service';
+import { Injectable, inject } from '@angular/core';
+import { BetResult } from '../../dto/bets/bet-result';
+import { BetPost } from '../../dto/bets/bet-post';
+import { firstValueFrom, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-bet',
@@ -10,21 +15,28 @@ import { FormsModule } from '@angular/forms';
 })
 
 export class BetComponent {
-  selectedType: string = 'group';
+  betType: string = 'GROUP';
   betNumber: string = '';
   betAmount: number | null = null;
   numberErrorMessage: string = '';
   amountErrorMessage: string = '';
+  betPost: BetPost = new BetPost();
+  betResult: BetResult | null = null;
+  showModal: boolean = false;
+  isLoading: boolean = false;
+
+  private betService = inject(BetService);
+  private cdr = inject(ChangeDetectorRef);
 
   private validationRules: any = {
-    group: { min: 1, max: 25, label: 'BICHO' },
-    dezena: { min: 0, max: 99, label: 'CENTENA' },
-    thousands: { min: 0, max: 9999, label: 'MILHAR' }
+    GROUP: { min: 1, max: 25, label: 'BICHO' },
+    TENS: { min: 0, max: 99, label: 'CENTENA' },
+    THOUSANDS: { min: 0, max: 9999, label: 'MILHAR' }
   };
 
   private validateBetNumber(){
     const num = parseInt(this.betNumber);
-    const rule = this.validationRules[this.selectedType];
+    const rule = this.validationRules[this.betType];
 
     if(!this.betNumber){
       this.numberErrorMessage = '';
@@ -56,7 +68,7 @@ export class BetComponent {
   }
 
   setType(type: string) {
-    this.selectedType = type;
+    this.betType = type;
     this.validateInput();
   }
 
@@ -65,12 +77,42 @@ export class BetComponent {
     this.validateInput();
   }
 
-  confirmBet() {
+  async confirmBet() {
     this.validateInput();
-    console.log('Aposta confirmada:', {
-      tipo: this.selectedType,
-      numero: this.betNumber,
-      valor: this.betAmount
-    });
+    if(this.numberErrorMessage || this.amountErrorMessage || !this.betAmount){
+      return;
+    }
+    
+    this.isLoading = true;
+    this.showModal = false;
+    this.betResult = null;
+    this.cdr.detectChanges();
+
+    this.betPost = {
+      betNumber: Number(this.betNumber),
+      betAmount: Number(this.betAmount),
+      betType: this.betType
+    };
+    
+    try{
+      const response = await firstValueFrom(this.betService.placeBet(this.betPost));
+      this.betResult = response;
+      this.showModal = true;
+    }
+
+    catch(error){
+      console.log('Erro na aposta', error);
+      alert('Falha ao processar aposta. Tente novamente!')
+    }
+
+    finally {
+      this.isLoading = false;
+      this.cdr.detectChanges();
+    }
+  }
+
+  closeModal() {
+    this.showModal = false;
+    this.betResult = null;
   }
 }

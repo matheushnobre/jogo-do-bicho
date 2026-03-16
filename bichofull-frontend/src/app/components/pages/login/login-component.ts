@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { LoginService } from '../../../services/login-service';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginRequest } from '../../../models/auth/login-request';
+import { LoginRequest } from '../../../dto/auth/login-request';
 
 @Component({
   selector: 'app-login',

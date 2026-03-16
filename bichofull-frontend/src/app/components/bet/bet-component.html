@@ -2,30 +2,30 @@
   <h2>Fazer Aposta</h2>
 
   <div class="tab-container">
-    <button [class.active]="selectedType === 'group'" (click)="setType('group')">
+    <button [class.active]="betType === 'GROUP'" (click)="setType('GROUP')">
       Bicho <span class="multiplier">(18x)</span>
     </button>
-    <button [class.active]="selectedType === 'dezena'" (click)="setType('dezena')">
+    <button [class.active]="betType === 'TENS'" (click)="setType('TENS')">
       Dezena <span class="multiplier">(60x)</span>
     </button>
-    <button [class.active]="selectedType === 'thousands'" (click)="setType('thousands')">
+    <button [class.active]="betType === 'THOUSANDS'" (click)="setType('THOUSANDS')">
       Milhar <span class="multiplier">(4000x)</span>
     </button>
   </div>
 
-  @if (selectedType == "group"){
+  @if (betType == "GROUP"){
     <p class="description">
         Escolha o número do seu bicho (1-25). Paga <strong>18x</strong> se acertar.
     </p>
   }
 
-  @if (selectedType == "dezena"){
+  @if (betType == "TENS"){
     <p class="description">
         Escolha uma dezena (0-99). Paga <strong>60x</strong> se acertar.
     </p>
   }
 
-  @if (selectedType == "thousands"){
+  @if (betType == "THOUSANDS"){
     <p class="description">
         Escolha um milhar (0-9999). Paga <strong>4000x</strong> se acertar.
     </p>
@@ -71,3 +71,54 @@
     Confirmar Aposta
   </button>
 </div>
+
+@if (isLoading) {
+  <div class="loading-overlay">
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <p>Processando sua aposta...</p>
+    </div>
+  </div>
+}
+
+@if (showModal && betResult){
+  <div class="modal-overlay">
+    <div class="modal-content">
+      <h2>Resumo da aposta: </h2>
+      <div class = "result-info">
+        <p><strong>Seu número: </strong> {{ betResult?.betNumber }}</p>
+        
+        @if((betResult?.payout ?? 0) > 0){
+            <p class="win"><strong>Você ganhou no Jogo do Bicho!! Parabéns!</strong> </p>
+            <p class="win-prize"> + R$ {{ betResult?.payout | number:'1.2-2' }} </p>
+
+        } @else{
+            <p class="not-win">Infelizmente não foi dessa vez que você ganhou. Tente novamente!</p>
+        }
+
+      </div>
+
+      <div class="draw-section main">
+        <div class="ball">
+          <span class="number">{{ betResult?.result?.mainDraw?.number }}</span>
+          <span class="animal">{{ betResult?.result?.mainDraw?.animal?.name }}</span>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="draw-section">
+        <div class="secondary-list">
+          @for (draw of betResult?.result?.secondaryDraws; track draw.id) {
+            <div class="mini-ball">
+              {{ draw?.number }} - {{ draw?.animal?.name }}
+            </div>
+          }
+        </div>
+      </div>
+
+      <button class="btn-close" (click)="closeModal()">Fechar</button>
+    </div>
+  </div>
+}
+
