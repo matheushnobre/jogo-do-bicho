@@ -29,9 +29,15 @@ public class PlaceBetService {
     @Autowired
     ResultService resultService;
 
+    @Autowired
+    CheckBet checkBet;
+
+    @Autowired
+    BetValidator betValidator;
+
     @Transactional
-    public Bet placeBet(User user, BetPostDTO data) {
-        BetValidator.validateBet(user, data);
+    public Bet placeBet(User user, BetPostDTO data ) {
+        betValidator.validateBet(user, data);
 
         Bet bet = createBet(user, data);
         user.setBalance(user.getBalance().subtract(data.betAmount()));
@@ -39,7 +45,7 @@ public class PlaceBetService {
         Result result = resultService.generateResults(data.betType());
         bet.setResult(result);
 
-        BigDecimal payout = CheckBet.check(bet);
+        BigDecimal payout = checkBet.check(bet);
         bet.setPayout(payout);
         user.setBalance(user.getBalance().add(payout));
 

@@ -4,10 +4,12 @@ import br.com.bichofull.bichofull.domain.bet.BetPostDTO;
 import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.exception.custom.BetNumberInvalidException;
 import br.com.bichofull.bichofull.exception.custom.InsufficientBalanceException;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BetValidator {
 
-    public static boolean validateBet(User user, BetPostDTO data){
+    public boolean validateBet(User user, BetPostDTO data){
         if(!data.isBetNumberValid()){
             throw new BetNumberInvalidException();
         }
