@@ -8,6 +8,7 @@ import { BetPost } from '../../dto/bets/bet-post';
 import { firstValueFrom, Observable } from 'rxjs';
 import { Animal } from '../../models/animal';
 import { SimpleChanges } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-bet',
@@ -28,6 +29,7 @@ export class BetComponent {
   betResult: BetResult | null = null;
   showModal: boolean = false;
   isLoading: boolean = false;
+  insuficientBalance: boolean = false;
 
   private betService = inject(BetService);
   private cdr = inject(ChangeDetectorRef);
@@ -41,7 +43,9 @@ export class BetComponent {
 
   private updateForm(animal: Animal) {
     this.betNumber = animal.id.toString(); 
-    this.betType = 'GROUP'
+    this.betType = 'GROUP';
+    this.betResult = null;
+    this.insuficientBalance = false;
     this.validateInput();
   }
 
@@ -101,6 +105,7 @@ export class BetComponent {
     }
     
     this.isLoading = true;
+    this.insuficientBalance = false;
     this.showModal = false;
     this.betResult = null;
     this.cdr.detectChanges();
@@ -112,14 +117,25 @@ export class BetComponent {
     };
     
     try{
+      this.insuficientBalance = false;
       const response = await firstValueFrom(this.betService.placeBet(this.betPost));
       this.betResult = response;
       this.showModal = true;
     }
 
     catch(error){
-      console.log('Erro na aposta', error);
-      alert('Falha ao processar aposta. Tente novamente!')
+      
+      if(error instanceof HttpErrorResponse){
+        const apiError = error.error;
+        if(apiError?.message?.includes('Balance')){
+          this.insuficientBalance = true;
+        } else{
+          console.log('Erro na aposta', error);
+          alert('Falha ao processar aposta. Tente novamente!')
+        }
+      } else{
+        alert('Erro inesperado de conexão.')
+      }
     }
 
     finally {

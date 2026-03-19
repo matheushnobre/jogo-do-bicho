@@ -105,8 +105,6 @@
         </div>
       </div>
 
-      <hr>
-
       <div class="draw-section">
         <div class="secondary-list">
           @for (draw of betResult?.result?.secondaryDraws; track draw.id) {
@@ -117,8 +115,14 @@
         </div>
       </div>
 
-      <button class="btn-close" (click)="closeModal()">Fechar</button>
+      <button class="btn-clos" (click)="closeModal()">Fechar</button>
     </div>
+  </div>
+}
+
+@if (insuficientBalance){
+  <div class="alert alert-danger mt-3" role="alert">
+    Saldo Insuficiente para realizar a aposta!
   </div>
 }
 
