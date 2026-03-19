@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AnimalListComponent } from '../../animal-list/animal-list-component';
 import { BetComponent } from '../../bet/bet-component';
+import { Animal } from '../../../models/animal';
 
 @Component({
   selector: 'app-home',
@@ -10,5 +11,9 @@ import { BetComponent } from '../../bet/bet-component';
 })
 
 export class HomeComponent {
+  selectedAnimalChild?: Animal;
 
+  handleAnimalSelection(animal: Animal){
+    this.selectedAnimalChild = animal;
+  }
 }

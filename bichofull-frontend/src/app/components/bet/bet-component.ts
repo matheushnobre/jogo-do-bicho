@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BetService } from '../../services/bets/bet-service';
@@ -6,6 +6,8 @@ import { Injectable, inject } from '@angular/core';
 import { BetResult } from '../../dto/bets/bet-result';
 import { BetPost } from '../../dto/bets/bet-post';
 import { firstValueFrom, Observable } from 'rxjs';
+import { Animal } from '../../models/animal';
+import { SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-bet',
@@ -15,6 +17,8 @@ import { firstValueFrom, Observable } from 'rxjs';
 })
 
 export class BetComponent {
+  @Input() selectedAnimal?: Animal;
+
   betType: string = 'GROUP';
   betNumber: string = '';
   betAmount: number | null = null;
@@ -27,6 +31,19 @@ export class BetComponent {
 
   private betService = inject(BetService);
   private cdr = inject(ChangeDetectorRef);
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['selectedAnimal'] && changes['selectedAnimal'].currentValue) {
+      const animal = changes['selectedAnimal'].currentValue as Animal;
+      this.updateForm(animal);
+    }
+  }
+
+  private updateForm(animal: Animal) {
+    this.betNumber = animal.id.toString(); 
+    this.betType = 'GROUP'
+    this.validateInput();
+  }
 
   private validationRules: any = {
     GROUP: { min: 1, max: 25, label: 'BICHO' },

@@ -5,7 +5,11 @@
   <ul class="animal-grid">
     @for (animal of (animals$ | async); track animal.id) {
       <li>
-          <app-animal [animal]="animal"></app-animal>
+          <app-animal 
+            [animal]="animal"
+            (selected)="onAnimalSelect($event)" 
+            [isActualSelected]="animal.id === currentSelectedId">
+          </app-animal>
       </li>
     }
   </ul>

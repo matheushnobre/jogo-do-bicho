@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Animal } from '../../models/animal';
 import { Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,5 +13,10 @@ import { CommonModule } from '@angular/common';
 
 export class AnimalComponent {
   @Input() animal!: Animal;
+  @Output() selected = new EventEmitter<Animal>();
+  @Input() isActualSelected: boolean = false;
   
+  selectThisAnimal() {
+    this.selected.emit(this.animal);
+  }
 }

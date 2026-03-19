@@ -1,4 +1,4 @@
-<div class="animal-card">
+<div class="animal-card" (click)="selectThisAnimal()" [ngClass]="{'selected': isActualSelected}">
 
   <div class="animal-id">
     {{ animal.id | number:'2.0' }}

@@ -1,11 +1,11 @@
 <div class="home">
     <div class="home-layout">
         <section class="animals-area">
-            <app-animal-list></app-animal-list>
+            <app-animal-list (selectedAnimal)="handleAnimalSelection($event)"></app-animal-list>
         </section>
 
         <section class="content-area">
-            <app-bet></app-bet>
+            <app-bet [selectedAnimal]="selectedAnimalChild"></app-bet>
         </section>
     </div>
 </div>
