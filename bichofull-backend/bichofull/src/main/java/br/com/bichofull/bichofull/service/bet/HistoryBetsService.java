@@ -16,7 +16,7 @@ public class HistoryBetsService {
     BetRepository betRepository;
 
     public List<Bet> getMyBets(User user){
-        List<Bet> bets = betRepository.findByUser(user);
+        List<Bet> bets = betRepository.findByUserOrderByBetDateDesc(user);
 
         return bets;
     }
