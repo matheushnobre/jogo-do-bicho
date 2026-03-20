@@ -1,0 +1,67 @@
+.history-bets-list-wrapper {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .history-bets-title {
+    font-weight: 700;
+    color: #3f51b5;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .history-table {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+
+    .list-group-item {
+      flex: 1; 
+      text-align: center;
+      border: none;
+      background: transparent;
+      padding: 12px 8px;
+    }
+
+    .header-row {
+      .list-group-item {
+        background-color: #3f51b5; 
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+      }
+    }
+
+    .data-row {
+      border-bottom: 1px solid #dee2e6;
+      background-color: white;
+      transition: background 0.2s;
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .win {
+        color: #28a745;
+        font-weight: bold;
+      }
+      .loss {
+        color: #dc3545;
+      }
+    }
+  }
+
+  .empty-state {
+    padding: 20px;
+    text-align: center;
+    background: white;
+    color: #6c757d;
+  }
+}
