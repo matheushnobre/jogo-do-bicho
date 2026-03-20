@@ -13,7 +13,7 @@
             <ul class="list-group list-group-horizontal data-row">
                 <li class="list-group-item">
                     {{ bet.betDate | date: 'dd/MM/yy '}}
-                    {{ bet.betDate | date: 'hh:MM' }}
+                    {{ bet.betDate | date: 'HH:mm' }}
                 </li>
                 <li class="list-group-item">{{ getTranslation(bet.betType) }}</li>
                 <li class="list-group-item">R$ {{ bet.betAmount | number : '1.2-2' }}</li>
