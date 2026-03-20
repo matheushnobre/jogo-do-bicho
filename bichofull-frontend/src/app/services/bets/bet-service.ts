@@ -18,5 +18,9 @@ export class BetService {
   placeBet(betPost: BetPost): Observable<BetResult>{
     return this.http.post<BetResult>(this.API + '/bet', betPost, {withCredentials: true});
   }
+
+  getHistory(): Observable<BetResult[]>{
+    return this.http.get<BetResult[]>(this.API + '/my-bets', {withCredentials: true})
+  }
   
 }
