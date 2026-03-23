@@ -1,17 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AnimalListComponent } from '../../animal-list/animal-list-component';
 import { BetComponent } from '../../bet/bet-component';
 import { Animal } from '../../../models/animal';
+import { BalanceComponent } from '../../balance/balance.component';
+import { UserService } from '../../../services/user-service';
+import { inject } from '@angular/core';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-home',
-  imports: [AnimalListComponent, BetComponent],
+  imports: [BalanceComponent, AnimalListComponent, BetComponent],
   templateUrl: './home-component.html',
   styleUrl: './home-component.scss',
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   selectedAnimalChild?: Animal;
+  private userService = inject(UserService);
+  loggedUser?: User;
+
+  ngOnInit(): void {
+    this.userService.user$.subscribe(user => {
+      if(user) this.loggedUser = user;
+    });
+
+    this.userService.refreshProfile();
+  }
 
   handleAnimalSelection(animal: Animal){
     this.selectedAnimalChild = animal;
