@@ -9,6 +9,7 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { Animal } from '../../models/animal';
 import { SimpleChanges } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-bet',
@@ -32,6 +33,7 @@ export class BetComponent {
   insuficientBalance: boolean = false;
 
   private betService = inject(BetService);
+  private userService = inject(UserService);
   private cdr = inject(ChangeDetectorRef);
 
   ngOnChanges(changes: SimpleChanges) {
@@ -121,6 +123,7 @@ export class BetComponent {
       const response = await firstValueFrom(this.betService.placeBet(this.betPost));
       this.betResult = response;
       this.showModal = true;
+      this.userService.refreshProfile();
     }
 
     catch(error){
