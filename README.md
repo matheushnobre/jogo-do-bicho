@@ -1,6 +1,6 @@
 # 🐾 Jogo do Bicho – BichoFull
 
-A **BichoFull** é uma aplicação web desenvolvida para simular o tradicional Jogo do Bicho, com fins exclusivamente educacionais.  
+O **BichoFull** é uma aplicação web desenvolvida para simular o tradicional Jogo do Bicho, com fins exclusivamente educacionais.  
 
 O projeto está sendo construído como atividade da disciplina **Laboratório de Produção de Software**, ministrada pelo professor Ronem Lavareda no **IFAM – Campus Parintins**.
 
@@ -20,7 +20,7 @@ Atualmente a aplicação está em fase de implementação e evolução contínua
 
 ### 🎨 Front-end
 - Angular  
-- Angular Material
+- Angular Material e Bootstrap
 
 ### ⚙️ Back-end
 - Java  
@@ -33,7 +33,9 @@ Atualmente a aplicação está em fase de implementação e evolução contínua
 
 ## 📌 Arquitetura
 
-A aplicação segue o padrão de **arquitetura em camadas**, separando responsabilidades em:
+A aplicação segue uma **arquitetura monolítica**. 
+
+Em relação ao back-end, o mesmo encontra-se utilizando **arquitetura em camadas**, separando responsabilidades em:
 
 - Controller  
 - Service  
@@ -51,21 +53,31 @@ Isso garante maior organização, escalabilidade e facilidade de manutenção.
 A API REST está sendo desenvolvida com os seguintes endpoints:
 
 ### 🔑 Autenticação
-- `POST /auth/register` → Cadastro de usuário  
-- `POST /auth/login` → Login de usuário  
+- `POST api/auth/register` → Cadastro de usuário  
+- `POST api/auth/login` → Login de usuário  
 
 ### 👤 Usuário
-- `GET /users/me` → Dados do usuário autenticado  
-- `GET /users/me/bets` → Listar apostas do usuário  
-- `PATCH /users/me/change_password` → Alterar senha  
-- `POST /users/me/deposit` → Realizar depósito de saldo  
+- `GET api/users/me` → Dados do usuário autenticado  
+- `PATCH api/users/me/change_password` → Alterar senha  
+- `POST api/users/me/deposit` → Realizar depósito de saldo  
 
 ### 🐯 Animais
 - `GET /animals` → Listar animais disponíveis  
 
 ### 🎲 Apostas
-- `POST /bets` → Criar nova aposta  
+- `POST /bets` → Criar nova aposta 
+- `GET api/bets/my-bets` → Listar apostas do usuário autenticado 
 - `GET /bets/{id}/result` → Dados do resultado da aposta  
+
+### 🎲 Telas da aplicação
+Tela Principal
+![Tela Principal](assets/home.png)
+
+Tela de Histórico
+![Tela de Histórico](assets/historico.png)
+
+Tela "Sobre"
+![Tela "Sobre"](assets/sobre.png)
 
 ---
 
