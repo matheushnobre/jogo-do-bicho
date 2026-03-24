@@ -6,10 +6,11 @@ import { BalanceComponent } from '../../balance/balance.component';
 import { UserService } from '../../../services/user-service';
 import { inject } from '@angular/core';
 import { User } from '../../../models/user';
+import { NavComponent } from '../../nav/nav.component';
 
 @Component({
   selector: 'app-home',
-  imports: [BalanceComponent, AnimalListComponent, BetComponent],
+  imports: [NavComponent, BalanceComponent, AnimalListComponent, BetComponent],
   templateUrl: './home-component.html',
   styleUrl: './home-component.scss',
 })
