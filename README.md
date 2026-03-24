@@ -69,14 +69,14 @@ A API REST está sendo desenvolvida com os seguintes endpoints:
 - `GET api/bets/my-bets` → Listar apostas do usuário autenticado 
 - `GET /bets/{id}/result` → Dados do resultado da aposta  
 
-### 🖥️ Telas da Aplicação
-**Tela Principal**
+## 🖥️ Telas da Aplicação
+### Tela Principal ###
 ![Tela Principal](assets/home.png)
 
-**Tela de Histórico**
+### Tela de Histórico ###
 ![Tela de Histórico](assets/historico.png)
 
-**Tela "Sobre"**
+### Tela "Sobre" ###
 ![Tela "Sobre"](assets/sobre.png)
 
 ---
