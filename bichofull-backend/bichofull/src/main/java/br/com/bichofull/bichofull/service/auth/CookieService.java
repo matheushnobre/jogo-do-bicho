@@ -1,4 +1,4 @@
-package br.com.bichofull.bichofull.service;
+package br.com.bichofull.bichofull.service.auth;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;

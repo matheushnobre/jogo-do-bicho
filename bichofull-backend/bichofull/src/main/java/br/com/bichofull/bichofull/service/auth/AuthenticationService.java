@@ -1,4 +1,4 @@
-package br.com.bichofull.bichofull.service;
+package br.com.bichofull.bichofull.service.auth;
 
 import br.com.bichofull.bichofull.domain.user.AuthenticationDTO;
 import br.com.bichofull.bichofull.domain.user.LoginResponseDTO;

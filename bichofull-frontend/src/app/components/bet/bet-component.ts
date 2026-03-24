@@ -83,6 +83,10 @@ export class BetComponent {
     if(num <= 0){
       this.amountErrorMessage = 'Valor apostado deve ser maior que 0'
     }
+
+    else{
+      this.amountErrorMessage = '';
+    }
   }
 
   validateInput(){
@@ -143,6 +147,8 @@ export class BetComponent {
 
     finally {
       this.isLoading = false;
+      this.betNumber = '';
+      this.betAmount = null;
       this.cdr.detectChanges();
     }
   }

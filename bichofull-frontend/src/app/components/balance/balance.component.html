@@ -1,5 +1,30 @@
 <div class="balance-content">
     <h2>Saldo disponível</h2>
     <h3 class="data-balance">R$ {{ loggedUser?.balance | number:'1.2-2' }}</h3>
-    <button class="deposit-btn">Depositar</button>
+
+    <p>Deseja simular um depósito?</p>
+    <div class="deposit-area">
+        <input
+            type="number"
+            [(ngModel)]="depositValue"
+            placeholder="0,00"
+            min="1"
+            class="deposit-input"
+            name="depositValue"
+            autocomplete="0.00"
+        >
+        <button 
+            class="deposit-btn"
+            (click)="deposit()"
+            [disabled]="depositValue <= 0"
+        >Confirmar</button>
+    </div>
 </div>
+
+
+@if (depositOk) {
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Sucesso!</strong> Depósito realizado.
+    <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
+  </div>
+}

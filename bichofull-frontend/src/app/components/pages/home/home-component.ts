@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AnimalListComponent } from '../../animal-list/animal-list-component';
 import { BetComponent } from '../../bet/bet-component';
 import { Animal } from '../../../models/animal';
@@ -18,10 +18,14 @@ export class HomeComponent implements OnInit{
   selectedAnimalChild?: Animal;
   private userService = inject(UserService);
   loggedUser?: User;
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnInit(): void {
     this.userService.user$.subscribe(user => {
-      if(user) this.loggedUser = user;
+      if(user) {
+        this.loggedUser = user;
+        this.cdr.detectChanges();
+      }
     });
 
     this.userService.refreshProfile();

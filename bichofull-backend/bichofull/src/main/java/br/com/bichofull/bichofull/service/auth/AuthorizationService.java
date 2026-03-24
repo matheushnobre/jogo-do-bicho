@@ -1,4 +1,4 @@
-package br.com.bichofull.bichofull.service;
+package br.com.bichofull.bichofull.service.auth;
 
 import br.com.bichofull.bichofull.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

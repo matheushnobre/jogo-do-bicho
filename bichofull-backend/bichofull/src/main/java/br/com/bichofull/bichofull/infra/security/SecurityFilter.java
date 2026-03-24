@@ -1,7 +1,7 @@
 package br.com.bichofull.bichofull.infra.security;
 
 import br.com.bichofull.bichofull.repository.UserRepository;
-import br.com.bichofull.bichofull.service.CookieService;
+import br.com.bichofull.bichofull.service.auth.CookieService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

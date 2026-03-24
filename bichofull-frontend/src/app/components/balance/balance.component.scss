@@ -26,7 +26,30 @@ h2{
     padding: 20px;
     background-color: rgb(201, 227, 201);
     border-radius: 50px;
+    font-size: 1.2rem;
     color: #3f51b5;
+}
+
+.deposit-area {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.deposit-input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-right: 1rem;
+  width: 7rem;
+}
+
+p{
+  color: #3f51b5;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .deposit-btn {
@@ -39,4 +62,19 @@ h2{
     font-weight: bold;
     font-size: 0.8rem;
     cursor: pointer;
+}
+
+.deposit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  min-width: 300px;
+  animation: slideIn 0.3s ease-out;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
