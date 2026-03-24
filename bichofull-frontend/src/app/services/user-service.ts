@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { DepositResponseDTO } from '../dto/deposit/deposit-response-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -24,5 +25,9 @@ export class UserService {
 
   refreshProfile(): void {
     this.getProfile().subscribe();
+  }
+
+  deposit(value: number): Observable<DepositResponseDTO>{
+    return this.http.post<DepositResponseDTO>(this.API + '/deposit', {value: value}, {withCredentials: true})
   }
 }
