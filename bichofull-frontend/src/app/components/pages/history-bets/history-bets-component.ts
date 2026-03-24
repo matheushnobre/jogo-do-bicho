@@ -3,10 +3,11 @@ import { BetService } from '../../../services/bets/bet-service';
 import { Observable } from 'rxjs';
 import { BetResult } from '../../../dto/bets/bet-result';
 import { CommonModule } from '@angular/common';
+import { NavComponent } from '../../nav/nav.component';
 
 @Component({
   selector: 'app-history-bets-component',
-  imports: [CommonModule],
+  imports: [CommonModule, NavComponent],
   templateUrl: './history-bets-component.html',
   styleUrl: './history-bets-component.scss',
 })
