@@ -4,7 +4,7 @@ import { Animal } from '../../models/animal';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { AnimalComponent } from '../animal/animal-component';
-import { Output } from '@angular/core';
+import { Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-animal-list',
@@ -16,7 +16,7 @@ import { Output } from '@angular/core';
 
 export class AnimalListComponent {
   @Output() selectedAnimal = new EventEmitter<Animal>();
-  currentSelectedId?: number;
+  @Input() currentSelectedId?: number;
 
   private animalService = inject(AnimalService)
   

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BetService } from '../../services/bets/bet-service';
@@ -20,6 +20,7 @@ import { UserService } from '../../services/user-service';
 
 export class BetComponent {
   @Input() selectedAnimal?: Animal;
+  @Output() betNumberChange = new EventEmitter<number>();
 
   betType: string = 'GROUP';
   betNumber: string = '';
@@ -37,8 +38,9 @@ export class BetComponent {
   private cdr = inject(ChangeDetectorRef);
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['selectedAnimal'] && changes['selectedAnimal'].currentValue) {
-      const animal = changes['selectedAnimal'].currentValue as Animal;
+    const animal = changes['selectedAnimal']?.currentValue as Animal;
+
+    if (animal && animal.id.toString() !== this.betNumber) {
       this.updateForm(animal);
     }
   }
@@ -92,10 +94,24 @@ export class BetComponent {
   validateInput(){
     this.validateBetNumber();
     this.validateAmountNumber();
+
+    if(!this.betNumber) return;
+
+    const num = parseInt(this.betNumber);
+    if(!isNaN(num) && this.betType == 'GROUP'){
+      this.betNumberChange.emit(num);
+    } else{
+      this.betNumberChange.emit(0);
+    }
   }
 
   setType(type: string) {
     this.betType = type;
+    if(type != 'GROUP'){
+      this.betNumber = '';
+      this.betNumberChange.emit(0);
+    }
+    
     this.validateInput();
   }
 
@@ -147,8 +163,6 @@ export class BetComponent {
 
     finally {
       this.isLoading = false;
-      this.betNumber = '';
-      this.betAmount = null;
       this.cdr.detectChanges();
     }
   }
@@ -156,5 +170,8 @@ export class BetComponent {
   closeModal() {
     this.showModal = false;
     this.betResult = null;
+    this.betNumber = '';
+    this.betAmount = null;
+    this.betNumberChange.emit(0);
   }
 }

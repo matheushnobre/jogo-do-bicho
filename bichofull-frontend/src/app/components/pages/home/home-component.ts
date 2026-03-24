@@ -35,4 +35,12 @@ export class HomeComponent implements OnInit{
   handleAnimalSelection(animal: Animal){
     this.selectedAnimalChild = animal;
   }
+
+  handleBetNumberManualChange(id: number){
+    if(id > 0 && id <= 25){
+      this.selectedAnimalChild = {id: id} as Animal;
+    } else{
+      this.selectedAnimalChild = undefined;
+    }
+  }
 }
