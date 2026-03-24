@@ -5,6 +5,7 @@ import br.com.bichofull.bichofull.domain.user.LoginResponseDTO;
 import br.com.bichofull.bichofull.domain.user.RegisterDTO;
 import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.service.auth.AuthenticationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
+@Tag(name = "Auth")
 @RestController
 @RequestMapping("api/auth")
 @CrossOrigin("*")

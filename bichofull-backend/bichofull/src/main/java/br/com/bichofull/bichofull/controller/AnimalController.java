@@ -2,6 +2,7 @@ package br.com.bichofull.bichofull.controller;
 
 import br.com.bichofull.bichofull.domain.animal.Animal;
 import br.com.bichofull.bichofull.service.animal.AnimalService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "Animals")
 @RestController
 @RequestMapping("api/animals")
 @CrossOrigin("*")

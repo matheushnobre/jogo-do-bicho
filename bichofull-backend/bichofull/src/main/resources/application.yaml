@@ -21,3 +21,8 @@ logging:
       springframework:
         web: DEBUG
         security: DEBUG
+
+
+springdoc:
+  api-docs:
+    path: /api/docs
