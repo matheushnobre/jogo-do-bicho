@@ -4,7 +4,7 @@ import br.com.bichofull.bichofull.domain.user.AuthenticationDTO;
 import br.com.bichofull.bichofull.domain.user.LoginResponseDTO;
 import br.com.bichofull.bichofull.domain.user.RegisterDTO;
 import br.com.bichofull.bichofull.domain.user.User;
-import br.com.bichofull.bichofull.service.AuthenticationService;
+import br.com.bichofull.bichofull.service.auth.AuthenticationService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

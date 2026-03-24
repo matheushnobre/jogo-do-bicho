@@ -1,4 +1,4 @@
-package br.com.bichofull.bichofull.service;
+package br.com.bichofull.bichofull.service.animal;
 
 import br.com.bichofull.bichofull.domain.animal.Animal;
 import br.com.bichofull.bichofull.repository.AnimalRepository;
