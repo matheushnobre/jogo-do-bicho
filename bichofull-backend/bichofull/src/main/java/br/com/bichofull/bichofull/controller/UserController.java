@@ -31,7 +31,10 @@ public class UserController {
     @Autowired
     DepositService depositService;
 
-    @Operation(summary = "Returns authenticated user data")
+    @Operation(
+            summary = "Returns authenticated user data.",
+            description = "Verify the logged user and returns user data."
+    )
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
@@ -53,7 +56,10 @@ public class UserController {
         return ResponseEntity.ok(new UserDTO(user));
     }
 
-    @Operation(summary = "Deposit a specific amount into the authenticated user's balance")
+    @Operation(
+            summary = "Deposit",
+            description = "Deposit a specific amount into the authenticated user's balance"
+    )
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
