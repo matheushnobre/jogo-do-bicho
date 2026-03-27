@@ -1,4 +1,6 @@
-package br.com.bichofull.bichofull.domain.user;
+package br.com.bichofull.bichofull.dtos.user;
+
+import br.com.bichofull.bichofull.domain.user.User;
 
 import java.math.BigDecimal;
 

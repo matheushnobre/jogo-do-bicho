@@ -1,6 +1,6 @@
-package br.com.bichofull.bichofull.domain.bet;
+package br.com.bichofull.bichofull.dtos.bets;
 
-import jakarta.validation.constraints.NotBlank;
+import br.com.bichofull.bichofull.domain.bet.BetType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 

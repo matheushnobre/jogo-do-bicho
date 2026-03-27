@@ -1,4 +1,4 @@
-package br.com.bichofull.bichofull.domain.deposit;
+package br.com.bichofull.bichofull.dtos.deposit;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

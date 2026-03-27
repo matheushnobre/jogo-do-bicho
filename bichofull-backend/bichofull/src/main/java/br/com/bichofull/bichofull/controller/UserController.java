@@ -1,9 +1,9 @@
 package br.com.bichofull.bichofull.controller;
 
-import br.com.bichofull.bichofull.domain.deposit.DepositDTO;
-import br.com.bichofull.bichofull.domain.deposit.DepositResponseDTO;
+import br.com.bichofull.bichofull.dtos.deposit.DepositDTO;
+import br.com.bichofull.bichofull.dtos.deposit.DepositResponseDTO;
 import br.com.bichofull.bichofull.domain.user.User;
-import br.com.bichofull.bichofull.domain.user.UserDTO;
+import br.com.bichofull.bichofull.dtos.user.UserDTO;
 import br.com.bichofull.bichofull.exception.ApiError;
 import br.com.bichofull.bichofull.infra.security.SecurityErrorDTO;
 import br.com.bichofull.bichofull.service.deposit.DepositService;
@@ -17,7 +17,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;

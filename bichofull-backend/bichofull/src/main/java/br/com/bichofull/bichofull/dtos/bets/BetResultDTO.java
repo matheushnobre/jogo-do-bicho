@@ -1,10 +1,8 @@
-package br.com.bichofull.bichofull.domain.bet;
+package br.com.bichofull.bichofull.dtos.bets;
 
-import br.com.bichofull.bichofull.domain.results.Result;
-import br.com.bichofull.bichofull.domain.results.ResultDTO;
+import br.com.bichofull.bichofull.domain.bet.Bet;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 public record BetResultDTO(
         Long id,

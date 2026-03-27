@@ -1,8 +1,7 @@
 package br.com.bichofull.bichofull.service.bet;
 
 import br.com.bichofull.bichofull.domain.bet.Bet;
-import br.com.bichofull.bichofull.domain.bet.BetPostDTO;
-import br.com.bichofull.bichofull.domain.bet.BetResultDTO;
+import br.com.bichofull.bichofull.dtos.bets.BetPostDTO;
 import br.com.bichofull.bichofull.domain.results.Result;
 import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.repository.BetRepository;

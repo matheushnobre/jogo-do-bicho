@@ -1,10 +1,10 @@
 package br.com.bichofull.bichofull.controller;
 
 import br.com.bichofull.bichofull.domain.bet.Bet;
-import br.com.bichofull.bichofull.domain.bet.BetPostDTO;
-import br.com.bichofull.bichofull.domain.bet.BetResultDTO;
+import br.com.bichofull.bichofull.dtos.bets.BetPostDTO;
+import br.com.bichofull.bichofull.dtos.bets.BetResultDTO;
 import br.com.bichofull.bichofull.domain.user.User;
-import br.com.bichofull.bichofull.dtos.HistoryBetDTO;
+import br.com.bichofull.bichofull.dtos.bets.HistoryBetDTO;
 import br.com.bichofull.bichofull.exception.ApiError;
 import br.com.bichofull.bichofull.infra.security.SecurityErrorDTO;
 import br.com.bichofull.bichofull.service.bet.HistoryBetsService;
@@ -21,9 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Tag(name = "Bets")
 @RestController
