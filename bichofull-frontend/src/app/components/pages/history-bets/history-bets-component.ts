@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BetService } from '../../../services/bets/bet-service';
-import { Observable } from 'rxjs';
-import { BetResult } from '../../../dto/bets/bet-result';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from '../../nav/nav.component';
+import { HistoryBetDTO } from '../../../dto/bets/history-bet-dto';
 
 @Component({
   selector: 'app-history-bets-component',
@@ -12,9 +12,28 @@ import { NavComponent } from '../../nav/nav.component';
   styleUrl: './history-bets-component.scss',
 })
 
-export class HistoryBetsComponent {
+export class HistoryBetsComponent implements OnInit {
   private betService = inject(BetService);
-  bets$: Observable<BetResult[]> = this.betService.getHistory();
+  isLoading: boolean = false;
+  currentPage = new BehaviorSubject<number>(0);
+  bets$: Observable<HistoryBetDTO> = this.currentPage.pipe(
+    switchMap(page => this.betService.getHistory(page))
+  );
+
+  ngOnInit() {
+  }
+
+  nextPage(totalPages: number){
+    if(this.currentPage.value < totalPages - 1){
+      this.currentPage.next(this.currentPage.value + 1);
+    }
+  }
+
+  prevPage(){
+    if(this.currentPage.value > 0){
+      this.currentPage.next(this.currentPage.value - 1);
+    }
+  }
 
   getTranslation(type: string | undefined | null): string {
     if(!type) return '-';
