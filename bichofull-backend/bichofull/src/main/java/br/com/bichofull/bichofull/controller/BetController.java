@@ -4,6 +4,7 @@ import br.com.bichofull.bichofull.domain.bet.Bet;
 import br.com.bichofull.bichofull.domain.bet.BetPostDTO;
 import br.com.bichofull.bichofull.domain.bet.BetResultDTO;
 import br.com.bichofull.bichofull.domain.user.User;
+import br.com.bichofull.bichofull.dtos.HistoryBetDTO;
 import br.com.bichofull.bichofull.exception.ApiError;
 import br.com.bichofull.bichofull.infra.security.SecurityErrorDTO;
 import br.com.bichofull.bichofull.service.bet.HistoryBetsService;
@@ -98,14 +99,8 @@ public class BetController {
             )
     })
     @GetMapping("/my-bets")
-    public ResponseEntity<List<BetResultDTO>> getMyBets(@AuthenticationPrincipal User user){
-        List<Bet> bets = historyBetsService.getMyBets(user);
-        List<BetResultDTO> betsDTO = new ArrayList<>();
-
-        for(Bet bet : bets){
-            betsDTO.add(new BetResultDTO(bet));
-        }
-
-        return ResponseEntity.ok(betsDTO);
+    public ResponseEntity<HistoryBetDTO> getMyBets(@AuthenticationPrincipal User user, @RequestParam(name = "page", defaultValue = "0") int pageNumber){
+        HistoryBetDTO bets = historyBetsService.getMyBets(user, pageNumber);
+        return ResponseEntity.ok(bets);
     }
 }

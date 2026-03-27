@@ -2,32 +2,59 @@
 <div class="history-bets-list-wrapper">
     <h2 class="history-bets-title">Meu Histórico</h2>
 
-    <div class="history-table">
-        <ul class="list-group list-group-horizontal header-row">
-            <li class="list-group-item">Data</li>
-            <li class="list-group-item">Tipo</li>
-            <li class="list-group-item">Valor</li>
-            <li class="list-group-item">Ganho</li>
-        </ul>
+    @if (bets$ | async; as data) {
+        <div class="pagination-container">
 
-        @for (bet of (bets$ | async); track bet.id) {
-            <ul class="list-group list-group-horizontal data-row">
-                <li class="list-group-item">
-                    {{ bet.betDate | date: 'dd/MM/yy '}}
-                    {{ bet.betDate | date: 'HH:mm' }}
-                </li>
-                <li class="list-group-item">{{ getTranslation(bet.betType) }}</li>
-                <li class="list-group-item">R$ {{ bet.betAmount | number : '1.2-2' }}</li>
-                <li class="list-group-item" [ngClass]="{'win': bet.payout > 0, 'loss': bet.payout <= 0}">
-                    @if(bet.payout > 0){
-                        + R$ {{ bet.payout | number : '1.2-2'}}
-                    } @else{
-                        Perdeu 
-                    }
-                </li>
+            <div class="pagination-buttons">
+                <button 
+                    class="btn-pag" 
+                    [disabled]="currentPage.value === 0" 
+                    (click)="prevPage()">
+                    &laquo; Anterior
+                </button>
+
+                <span class="page-indicator">
+                    Página <strong>{{ currentPage.value + 1 }}</strong> de {{ data.totalPages }}
+                </span>
+
+                <button 
+                    class="btn-pag" 
+                    [disabled]="currentPage.value + 1 >= data.totalPages" 
+                    (click)="nextPage(data.totalPages)">
+                    Próximo &raquo;
+                </button>
+            </div>
+        </div>
+
+        <div class="history-table">
+            <ul class="list-group list-group-horizontal header-row">
+                <li class="list-group-item">Data</li>
+                <li class="list-group-item">Tipo</li>
+                <li class="list-group-item">Valor</li>
+                <li class="list-group-item">Ganho</li>
             </ul>
-        } @empty {
-            <div class="empty-state">Nenhuma aposta encontrada.</div>
-        }
-    </div>
+
+            @for (bet of data.bets; track bet.id) {
+                <ul class="list-group list-group-horizontal data-row">
+                    <li class="list-group-item">
+                        {{ bet.betDate | date: 'dd/MM/yy '}}
+                        {{ bet.betDate | date: 'HH:mm' }}
+                    </li>
+                    <li class="list-group-item">{{ getTranslation(bet.betType) }}</li>
+                    <li class="list-group-item">R$ {{ bet.betAmount | number : '1.2-2' }}</li>
+                    <li class="list-group-item" [ngClass]="{'win': bet.payout > 0, 'loss': bet.payout <= 0}">
+                        @if (bet.payout > 0) {
+                            + R$ {{ bet.payout | number : '1.2-2'}}
+                        } @else {
+                            Perdeu 
+                        }
+                    </li>
+                </ul>
+            } @empty {
+                <div class="empty-state">Nenhuma aposta encontrada para esta página.</div>
+            }
+        </div>
+    } @else {
+        <div class="loading-state">Buscando histórico...</div>
+    }
 </div>
