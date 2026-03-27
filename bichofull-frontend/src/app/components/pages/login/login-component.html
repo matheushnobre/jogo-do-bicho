@@ -45,9 +45,9 @@
         Entrar
       </button>
 
-      @if (loginError) {
+      @if (loginError != '') {
         <span class="error-login fade-in">
-          E-mail e/ou senha incorretos
+         {{loginError}}
         </span>
       }
       

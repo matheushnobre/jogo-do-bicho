@@ -8,6 +8,7 @@ import { LoginService } from '../../../services/login-service';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../../../dto/auth/login-request';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -27,18 +28,19 @@ export class LoginComponent {
     private loginService = inject(LoginService);
     private router = inject(Router);
     private cdr = inject(ChangeDetectorRef);
-    
+    private snackBar = inject(MatSnackBar);
+
     loginForm = new FormGroup({
       email: new FormControl('', { nonNullable: true, validators: [Validators.required, Validators.email] }),
       password: new FormControl('', { nonNullable: true, validators: [Validators.required] })
     });
 
-    loginError: boolean = false;
+    loginError: string = "";
 
     login(){
       if (this.loginForm.invalid) return;
 
-      this.loginError = false;
+      this.loginError = "";
 
       const user: LoginRequest = this.loginForm.getRawValue();
       this.loginService.login(user).subscribe({
@@ -47,7 +49,15 @@ export class LoginComponent {
           this.router.navigate(['/home']);
         },
         error: (err) => {
-          this.loginError = true;
+          if(err.status == 403){
+            this.loginError = "Email e/ou senha incorretos"
+          } else{
+              this.snackBar.open(
+                "Erro inesperado. Tente novamente.",
+                "Fechar",
+                { duration: 3000, horizontalPosition: 'center', verticalPosition: 'top' }
+              );
+          }
           this.cdr.detectChanges();
         }
       });
