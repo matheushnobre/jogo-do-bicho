@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { DepositResponseDTO } from '../dto/deposit/deposit-response-dto';
+import { environment } from '../../enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,8 @@ import { DepositResponseDTO } from '../dto/deposit/deposit-response-dto';
 
 export class UserService {
   private http = inject(HttpClient)
-  private API = "http://localhost:8080/api/users"
+  API = `${environment.api_url}/users`
+  
   
   private userSubject = new BehaviorSubject<User | null>(null);
   user$ = this.userSubject.asObservable();

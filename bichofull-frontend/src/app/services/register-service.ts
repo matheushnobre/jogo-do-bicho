@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { RegisterRequest } from '../dto/auth/register-request';
+import { environment } from '../../enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { RegisterRequest } from '../dto/auth/register-request';
 
 export class RegisterService {
   http = inject(HttpClient)
-  API = "http://localhost:8080/api/auth"
+  API = `${environment.api_url}/auth`
   
   constructor(){}
 
