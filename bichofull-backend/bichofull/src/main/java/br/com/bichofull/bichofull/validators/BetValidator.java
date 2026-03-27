@@ -1,6 +1,6 @@
 package br.com.bichofull.bichofull.validators;
 
-import br.com.bichofull.bichofull.domain.bet.BetPostDTO;
+import br.com.bichofull.bichofull.dtos.bets.BetPostDTO;
 import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.exception.custom.BetNumberInvalidException;
 import br.com.bichofull.bichofull.exception.custom.InsufficientBalanceException;

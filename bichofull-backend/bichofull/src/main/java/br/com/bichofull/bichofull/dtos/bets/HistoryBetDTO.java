@@ -1,6 +1,4 @@
-package br.com.bichofull.bichofull.dtos;
-
-import br.com.bichofull.bichofull.domain.bet.BetResultDTO;
+package br.com.bichofull.bichofull.dtos.bets;
 
 import java.util.List;
 

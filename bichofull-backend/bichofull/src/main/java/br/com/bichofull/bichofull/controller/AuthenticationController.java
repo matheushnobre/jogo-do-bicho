@@ -1,12 +1,10 @@
 package br.com.bichofull.bichofull.controller;
 
-import br.com.bichofull.bichofull.domain.bet.BetResultDTO;
-import br.com.bichofull.bichofull.domain.user.AuthenticationDTO;
-import br.com.bichofull.bichofull.domain.user.LoginResponseDTO;
-import br.com.bichofull.bichofull.domain.user.RegisterDTO;
+import br.com.bichofull.bichofull.dtos.auth.AuthenticationDTO;
+import br.com.bichofull.bichofull.dtos.auth.LoginResponseDTO;
+import br.com.bichofull.bichofull.dtos.auth.RegisterDTO;
 import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.exception.ApiError;
-import br.com.bichofull.bichofull.infra.security.SecurityErrorDTO;
 import br.com.bichofull.bichofull.service.auth.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

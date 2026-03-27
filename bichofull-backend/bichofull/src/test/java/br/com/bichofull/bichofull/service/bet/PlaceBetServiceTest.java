@@ -1,7 +1,7 @@
 package br.com.bichofull.bichofull.service.bet;
 
 import br.com.bichofull.bichofull.domain.bet.Bet;
-import br.com.bichofull.bichofull.domain.bet.BetPostDTO;
+import br.com.bichofull.bichofull.dtos.bets.BetPostDTO;
 import br.com.bichofull.bichofull.domain.bet.BetType;
 import br.com.bichofull.bichofull.domain.results.Result;
 import br.com.bichofull.bichofull.domain.user.User;
@@ -11,7 +11,6 @@ import br.com.bichofull.bichofull.repository.UserRepository;
 import br.com.bichofull.bichofull.service.results.ResultService;
 import br.com.bichofull.bichofull.utils.CheckBet;
 import br.com.bichofull.bichofull.validators.BetValidator;
-import jakarta.inject.Inject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,9 +1,9 @@
 package br.com.bichofull.bichofull.service.bet;
 
 import br.com.bichofull.bichofull.domain.bet.Bet;
-import br.com.bichofull.bichofull.domain.bet.BetResultDTO;
+import br.com.bichofull.bichofull.dtos.bets.BetResultDTO;
 import br.com.bichofull.bichofull.domain.user.User;
-import br.com.bichofull.bichofull.dtos.HistoryBetDTO;
+import br.com.bichofull.bichofull.dtos.bets.HistoryBetDTO;
 import br.com.bichofull.bichofull.mapper.BetMapper;
 import br.com.bichofull.bichofull.repository.BetRepository;
 import org.springframework.beans.factory.annotation.Autowired;

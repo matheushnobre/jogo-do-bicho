@@ -1,7 +1,7 @@
 package br.com.bichofull.bichofull.service;
 
-import br.com.bichofull.bichofull.domain.user.AuthenticationDTO;
-import br.com.bichofull.bichofull.domain.user.RegisterDTO;
+import br.com.bichofull.bichofull.dtos.auth.AuthenticationDTO;
+import br.com.bichofull.bichofull.dtos.auth.RegisterDTO;
 import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.exception.custom.EmailAlreadyRegisteredException;
 import br.com.bichofull.bichofull.infra.security.TokenService;
