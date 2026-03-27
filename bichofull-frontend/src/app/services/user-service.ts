@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { DepositResponseDTO } from '../dto/deposit/deposit-response-dto';
-import { environment } from '../../enviroments/enviroment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
