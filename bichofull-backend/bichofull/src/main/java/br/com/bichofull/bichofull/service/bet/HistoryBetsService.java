@@ -23,13 +23,8 @@ public class HistoryBetsService {
     @Autowired
     BetMapper betMapper;
 
-//    public List<Bet> getMyBets(User user){
-//        List<Bet> bets = betRepository.findByUserOrderByBetDateDesc(user);
-//        return bets;
-//    }
-
     public HistoryBetDTO getMyBets(User user, int pageNumber){
-        Page<Bet> pages = betRepository.findAll(PageRequest.of(pageNumber, 10, Sort.by("betDate").descending()));
+        Page<Bet> pages = betRepository.findAllByUser(user, PageRequest.of(pageNumber, 10, Sort.by("betDate").descending()));
         List<BetResultDTO> bets = pages.get().map(betMapper::toDTO).toList();
         return new HistoryBetDTO(bets, pages.getTotalElements(), pages.getTotalPages());
     }
