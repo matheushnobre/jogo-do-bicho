@@ -4,6 +4,7 @@ import { BetPost } from '../../dto/bets/bet-post';
 import { BetResult } from '../../dto/bets/bet-result';
 import { Observable } from 'rxjs';
 import { HistoryBetDTO } from '../../dto/bets/history-bet-dto';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ import { HistoryBetDTO } from '../../dto/bets/history-bet-dto';
 export class BetService {
   http = inject(HttpClient)
   
-  API = "http://localhost:8080/api/bets"
+  API = `${environment.api_url}/bets`
 
   constructor(){}
 

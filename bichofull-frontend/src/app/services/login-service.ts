@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginRequest } from '../dto/auth/login-request';
 import { AuthResponse } from '../dto/auth/auth-response';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ import { AuthResponse } from '../dto/auth/auth-response';
 export class LoginService {
   http = inject(HttpClient)
 
-  API = "http://localhost:8080/api/auth"
+  API = `${environment.api_url}/auth`
   
   constructor(){ 
 

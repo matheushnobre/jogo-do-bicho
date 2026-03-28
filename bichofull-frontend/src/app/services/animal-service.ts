@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Animal } from '../models/animal';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class AnimalService {
   http = inject(HttpClient)
   
-  API = "http://localhost:8080/api/animals"
+  API = `${environment.api_url}/animals`
 
   constructor(){}
 
