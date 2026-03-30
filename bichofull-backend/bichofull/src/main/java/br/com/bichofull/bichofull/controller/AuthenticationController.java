@@ -124,7 +124,7 @@ public class AuthenticationController {
     public ResponseEntity<Void> logout(@AuthenticationPrincipal User user){
         ResponseCookie cookie = ResponseCookie.from("token", "")
                 .httpOnly(true)
-                .secure(true)
+                .secure(false)
                 .path("/")
                 .maxAge(0)
                 .build();

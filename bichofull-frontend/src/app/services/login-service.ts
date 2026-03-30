@@ -23,7 +23,7 @@ export class LoginService {
   }
 
   logout() {
-    return this.http.post<boolean>(this.API + "/logout", {}, {withCredentials: true});
+    return this.http.post<void>(this.API + "/logout", {}, {withCredentials: true});
   }
   
 }
