@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
@@ -42,7 +43,7 @@ public class Bet {
     private Result result;
 
     @Column(nullable = false)
-    private LocalDateTime betDate;
+    private Instant betDate;
 
     @Column
     private BigDecimal payout;

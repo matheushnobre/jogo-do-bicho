@@ -103,7 +103,7 @@ public class AuthenticationController {
 
         return ResponseEntity.created(location).build();
     }
-    
+
     @Operation(
             summary = "Logout user",
             description = "Invalidates the user session by instructing the client to remove the authentication cookie."

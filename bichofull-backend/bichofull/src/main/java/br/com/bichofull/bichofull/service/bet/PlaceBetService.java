@@ -14,7 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 
 @Service
 public class PlaceBetService {
@@ -60,7 +63,7 @@ public class PlaceBetService {
         bet.setBetNumber(data.betNumber());
         bet.setBetAmount(data.betAmount());
         bet.setBetType(data.betType());
-        bet.setBetDate(LocalDateTime.now());
+        bet.setBetDate(Instant.now());
 
         return bet;
     }
