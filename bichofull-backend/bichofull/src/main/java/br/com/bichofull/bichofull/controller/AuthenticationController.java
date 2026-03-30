@@ -5,6 +5,7 @@ import br.com.bichofull.bichofull.dtos.auth.LoginResponseDTO;
 import br.com.bichofull.bichofull.dtos.auth.RegisterDTO;
 import br.com.bichofull.bichofull.domain.user.User;
 import br.com.bichofull.bichofull.exception.ApiError;
+import br.com.bichofull.bichofull.infra.security.SecurityErrorDTO;
 import br.com.bichofull.bichofull.service.auth.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -15,7 +16,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -97,5 +102,33 @@ public class AuthenticationController {
         URI location = URI.create("/users/" + newUser.getId());
 
         return ResponseEntity.created(location).build();
+    }
+    
+    @Operation(
+            summary = "Logout user",
+            description = "Invalidates the user session by instructing the client to remove the authentication cookie."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Logout successful. Authentication cookie removed.",
+                    content = @Content
+            ),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "Forbidden: Authentication is required to access this resource.",
+                    content = @Content(schema = @Schema(implementation = SecurityErrorDTO.class))
+            )
+    })
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(@AuthenticationPrincipal User user){
+        ResponseCookie cookie = ResponseCookie.from("token", "")
+                .httpOnly(true)
+                .secure(true)
+                .path("/")
+                .maxAge(0)
+                .build();
+
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).build();
     }
 }
