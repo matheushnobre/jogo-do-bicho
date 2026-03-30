@@ -21,5 +21,9 @@ export class LoginService {
   login(user: LoginRequest): Observable<AuthResponse>{
     return this.http.post<AuthResponse>(this.API + "/login", user, {withCredentials: true});
   }
+
+  logout() {
+    return this.http.post<boolean>(this.API + "/logout", {}, {withCredentials: true});
+  }
   
 }
