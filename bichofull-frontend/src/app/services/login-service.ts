@@ -11,7 +11,6 @@ import { environment } from '../../environments/environment';
 
 export class LoginService {
   http = inject(HttpClient)
-
   API = `${environment.api_url}/auth`
   
   constructor(){ 

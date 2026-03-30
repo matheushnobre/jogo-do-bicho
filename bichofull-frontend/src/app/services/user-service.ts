@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
@@ -13,6 +13,7 @@ export class UserService {
   private http = inject(HttpClient)
   API = `${environment.api_url}/users`
   
+  user = signal<User | null>(null);
   
   private userSubject = new BehaviorSubject<User | null>(null);
   user$ = this.userSubject.asObservable();
@@ -21,8 +22,16 @@ export class UserService {
 
   getProfile(): Observable<User>{
     return this.http.get<User>(this.API + '/me', {withCredentials: true}).pipe(
-      tap(user => this.userSubject.next(user))
-    );
+      tap(user => {
+          this.user.set(user), 
+          this.userSubject.next(user)
+        })
+      );
+  }
+
+  clearProfile(): void {
+    this.user.set(null);
+    this.userSubject.next(null);
   }
 
   refreshProfile(): void {
