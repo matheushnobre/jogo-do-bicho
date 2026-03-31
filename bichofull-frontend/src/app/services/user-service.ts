@@ -41,4 +41,8 @@ export class UserService {
   deposit(value: number): Observable<DepositResponseDTO>{
     return this.http.post<DepositResponseDTO>(this.API + '/deposit', {value: value}, {withCredentials: true})
   }
+
+  updatePassword(oldPassword: string, newPassword: string): Observable<boolean>{
+    return this.http.patch<boolean>(this.API + '/changePassword', {oldPassword: oldPassword, newPassword: newPassword}, {withCredentials: true});
+  }
 }

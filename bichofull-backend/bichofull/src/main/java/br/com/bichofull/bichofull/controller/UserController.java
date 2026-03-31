@@ -81,7 +81,7 @@ public class UserController {
             )
     })
     @PostMapping("/deposit")
-    public ResponseEntity<DepositResponseDTO> deposit(@AuthenticationPrincipal User user, @RequestBody @Valid DepositDTO data){
+    public ResponseEntity<DepositResponseDTO> deposit(@AuthenticationPrincipal User user, @RequestBody @Valid DepositDTO data) {
         BigDecimal newBalance = depositService.deposit(user, data.value());
         return ResponseEntity.ok(new DepositResponseDTO(newBalance));
     }
