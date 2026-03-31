@@ -5,6 +5,7 @@ import { HomeComponent } from './components/pages/home/home-component';
 import { authGuard } from './guards/auth-guard';
 import { HistoryBetsComponent } from './components/pages/history-bets/history-bets-component';
 import { AboutComponent } from './components/pages/about/about';
+import { MyAccountComponent } from './components/pages/my-account/my-account.component';
 
 export const routes: Routes = [
     { path: "login", component: LoginComponent},
@@ -12,5 +13,6 @@ export const routes: Routes = [
     { path: "home", component: HomeComponent, canActivate: [authGuard]},
     { path: "historico", component: HistoryBetsComponent, canActivate: [authGuard]},
     { path: "sobre", component: AboutComponent},
+    { path: "perfil", component: MyAccountComponent},
     { path: "**", redirectTo: "home" },
 ];
