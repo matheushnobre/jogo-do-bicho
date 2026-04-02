@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: meu-mysql
+    restart: always
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=bichodb
+    ports:
+      - "3307:3306" 
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./bichofull-backend/bichofull  
+      dockerfile: Dockerfile
+    container_name: minha_app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/bichodb
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+      # AJUSTE AQUI: O nome deve bater com o seu @Value("${api.security.token.secret}")
+      - API_SECURITY_TOKEN_SECRET=my-secret-key 
+      - JWT_SECRET=my-secret-key
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./bichofull-frontend          
+      dockerfile: Dockerfile
+      # DICA: Se o seu Dockerfile aceita ARG para a API_URL, passe aqui.
+    container_name: meu-front
+    # Adicionamos isso para o Front saber quem é o host local
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "4200:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

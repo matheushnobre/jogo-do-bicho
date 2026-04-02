@@ -3,6 +3,8 @@ package br.com.bichofull.bichofull.service.auth;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -10,13 +12,15 @@ import java.util.Optional;
 public class CookieService {
 
     public static void setCookie(HttpServletResponse response, String key, String value, int seconds){
-        Cookie cookie = new Cookie(key, value);
-        cookie.setMaxAge(seconds);
-        cookie.setPath("/");
-        cookie.setHttpOnly(true);
-        cookie.setSecure(false);
+        ResponseCookie cookie = ResponseCookie.from(key, value)
+                .httpOnly(true)
+                .secure(false)    // Mantenha false para HTTP (localhost/docker)
+                .path("/")
+                .maxAge(seconds)
+                .sameSite("Lax")  // ESSENCIAL: Permite o envio entre 4200 e 8080
+                .build();
 
-        response.addCookie(cookie);
+        response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
     }
 
     public static String getCookie(HttpServletRequest request, String key){
