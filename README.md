@@ -8,14 +8,6 @@ O projeto está sendo construído como atividade da disciplina **Laboratório de
 
 ---
 
-## 🚧 Status do Projeto
-
-🚀 **Em desenvolvimento**
-
-Atualmente a aplicação está em fase de implementação e evolução contínua, com melhorias sendo adicionadas gradualmente tanto no front-end quanto no back-end.
-
----
-
 ## 🛠️ Tecnologias Utilizadas
 
 ### 🎨 Front-end
@@ -68,6 +60,7 @@ A API REST possui os seguintes endpoints:
 - `POST api/bets` → Criar nova aposta 
 - `GET api/bets/my-bets` → Listar apostas do usuário autenticado 
  
+---
 
 ## 🖥️ Telas da Aplicação
 ### Tela Login ###
@@ -89,8 +82,8 @@ A API REST possui os seguintes endpoints:
 ---
 
 ## Como acessar o projeto de forma remota 
-- Acesse http://18.220.215.216/ para visualizar o projeto
-- Ou acesse http://18.220.215.216:8080/swagger-ui/index.html para ter acesso a documentação
+* [Site] (http://18.220.215.216/) 
+* [BackendDocs] (http://18.220.215.216:8080/swagger-ui/index.html)
 
 ## Como executar localmente
 ### 📋 Pré-requisitos
@@ -114,7 +107,8 @@ Antes de começar, você precisará ter instalado em sua máquina:
 
 ### Links de Acesso
 
-- Frontend: http://localhost:4200
+Acesse o projeto por meio do endereço: 
+```http://localhost:4200```
 
 Desenvolvido por **Matheus Nobre** 🐾  
 IFAM – Campus Parintins
