@@ -50,44 +50,71 @@ Isso garante maior organização, escalabilidade e facilidade de manutenção.
 
 ## 🔐 Funcionalidades do Back-end (API)
 
-A API REST está sendo desenvolvida com os seguintes endpoints:
+A API REST possui os seguintes endpoints:
 
 ### 🔑 Autenticação
 - `POST api/auth/register` → Cadastro de usuário  
 - `POST api/auth/login` → Login de usuário  
+- `POST api/auth/logout` → Logout de usuário
 
 ### 👤 Usuário
 - `GET api/users/me` → Dados do usuário autenticado  
-- `PATCH api/users/me/change_password` → Alterar senha  
 - `POST api/users/me/deposit` → Realizar depósito de saldo  
 
 ### 🐯 Animais
-- `GET /animals` → Listar animais disponíveis  
+- `GET api/animals` → Listar animais disponíveis  
 
 ### 🎲 Apostas
-- `POST /bets` → Criar nova aposta 
+- `POST api/bets` → Criar nova aposta 
 - `GET api/bets/my-bets` → Listar apostas do usuário autenticado 
-- `GET /bets/{id}/result` → Dados do resultado da aposta  
+ 
 
 ## 🖥️ Telas da Aplicação
+### Tela Login ###
+![Tela Login](assets/login.png)
+
 ### Tela Principal ###
 ![Tela Principal](assets/home.png)
 
 ### Tela de Histórico ###
 ![Tela de Histórico](assets/historico.png)
 
+### Tela "Minha Conta" ###
+![Tela "Minha Conta"](assets/minha-conta.png)
+
+
 ### Tela "Sobre" ###
 ![Tela "Sobre"](assets/sobre.png)
 
 ---
 
-## Como executar
-### Pré-requisitos
-- Ter Docker instalado
+## Como acessar o projeto de forma remota 
+- Acesse http://18.220.215.216/ para visualizar o projeto
+- Ou acesse http://18.220.215.216:8080/swagger-ui/index.html para ter acesso a documentação
 
-### Passo 1:
-- Clone o repositório do projeto:
+## Como executar localmente
+### 📋 Pré-requisitos
+Antes de começar, você precisará ter instalado em sua máquina:
+* [Docker](https://www.docker.com/get-started) 🐳
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Certifique-se de que ele esteja em execução)
 
+### Passo 1: Clone o repositório
+
+```git clone https://github.com/matheushnobre/jogo-do-bicho.git ```
+
+### Passo 2: Acesse a pasta do projeto
+- Abra o terminal na raiz do diretório clonado:
+
+``` cd jogo-do-bicho ```
+
+### Passo 3: Suba os containers
+- Execute o comando abaixo para buildar e iniciar todos os serviços:
+
+``` docker compose up -d ```
+
+### Links de Acesso
+
+- Frontend: http://localhost:4200
 
 Desenvolvido por **Matheus Nobre** 🐾  
 IFAM – Campus Parintins
