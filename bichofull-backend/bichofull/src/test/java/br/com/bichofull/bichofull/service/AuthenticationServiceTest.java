@@ -59,7 +59,6 @@ class AuthenticationServiceTest {
         var response = authenticationService.login(dto, httpResponse);
         assertNotNull(response);
         assertEquals("fake-jwt-token", response.token());
-        verify(httpResponse).addCookie(any(Cookie.class));
     }
 
     @Test

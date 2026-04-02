@@ -81,5 +81,13 @@ A API REST está sendo desenvolvida com os seguintes endpoints:
 
 ---
 
+## Como executar
+### Pré-requisitos
+- Ter Docker instalado
+
+### Passo 1:
+- Clone o repositório do projeto:
+
+
 Desenvolvido por **Matheus Nobre** 🐾  
 IFAM – Campus Parintins
