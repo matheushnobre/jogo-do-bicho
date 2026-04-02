@@ -82,8 +82,8 @@ A API REST possui os seguintes endpoints:
 ---
 
 ## Como acessar o projeto de forma remota 
-* [Site] (http://18.220.215.216/) 
-* [BackendDocs] (http://18.220.215.216:8080/swagger-ui/index.html)
+* [Site](http://18.220.215.216/) 
+* [BackendDocs](http://18.220.215.216:8080/swagger-ui/index.html)
 
 ## Como executar localmente
 ### 📋 Pré-requisitos
