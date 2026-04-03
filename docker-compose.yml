@@ -30,7 +30,6 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/bichodb
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=
-      # AJUSTE AQUI: O nome deve bater com o seu @Value("${api.security.token.secret}")
       - API_SECURITY_TOKEN_SECRET=my-secret-key 
       - JWT_SECRET=my-secret-key
     ports:
@@ -42,9 +41,7 @@ services:
     build:
       context: ./bichofull-frontend          
       dockerfile: Dockerfile
-      # DICA: Se o seu Dockerfile aceita ARG para a API_URL, passe aqui.
     container_name: meu-front
-    # Adicionamos isso para o Front saber quem é o host local
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
